@@ -18,6 +18,7 @@ class SimpleView(discord.ui.View):
     async def add_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_message("hello world")
 
+#balin stinks
 
 #calculations
 def add(a, b):
