@@ -313,23 +313,29 @@ async def blackjack(ctx):
                 enemy_hand.append(deck[2])
                 new_game = False
 
-        #button functionality
+        
 
             if on_hit:
                 hits += 1
-                on_hit = "wait"
+                on_hit = False
                 player_hand.append(deck[hits + 3])
                 await ctx.send(f"you drew a {player_hand[2].number}")
+                blackjackview = Blackjackbutton() 
+                message = await ctx.send(view=blackjackview)
+                blackjackview.message = message
+                await blackjackview.wait()
+                await blackjackview.disable_all_items()
+                if blackjackview.did_hit == True:
+                    await ctx.send("hit")
+                    on_hit = True
 
-            #resets the draw cooldown every 300 frames
+                if blackjackview.did_stay == True:
+                    await ctx.send("stay")
+                    on_stay = True
 
-
-            # if quit_button.clicked and enemy_draw == "ready":
-            #     running = False
-            #     # enemy_hand.append(deck[hits + 1])
-            #     # hits += 1
-            #     # enemy_draw = "wait"
-
+                if blackjackview.did_reset == True:
+                    await ctx.send("reset")
+                    on_reset = True
 
             if on_reset:
             #resets game when button clicked
@@ -339,13 +345,6 @@ async def blackjack(ctx):
                 player_hand.append(deck[0])
                 player_hand.append(deck[1])
                 enemy_hand.append(deck[2])
-
-            # draws both hands based on how many hits
-            # for i in range(len(player_hand)):
-            #     player_hand[i].draw(i * 100 + 200, 500)
-
-            # for i in range(len(enemy_hand)):
-            #     enemy_hand[i].draw(i*100 + 200, 200)
 
             #sets aces to either 1 or 11
             player_total = 0
@@ -400,7 +399,7 @@ async def blackjack(ctx):
                             hits += 1
                             enemy_hand.append(deck[hits + 1])
                 if enemy_total > 21:
-                    await ctx.send("you win opp > 21")
+                    await ctx.send("the bot busted, you win")
                 
                     break
                     #take to end screen
@@ -408,7 +407,7 @@ async def blackjack(ctx):
                     await ctx.send("you lose")
                     break
                 elif player_total > enemy_total:
-                    await ctx.send("you win u < opp")
+                    await ctx.send("you win bot")
                     break
                 else:
                     await ctx.send("tie")
