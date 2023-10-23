@@ -1,7 +1,7 @@
 *BLACKJACK CODE IS IN MAIN.PY*
 
 
-_Brief summary of this project prompt in your own words_
+# Brief summary of this project prompt in your own words
 
 I created a blackjack game within a Discord Bot.
 
