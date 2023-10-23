@@ -1,4 +1,4 @@
-*BLACKJACK CODE IS IN MAIN.PY*
+_*BLACKJACK CODE IS IN MAIN.PY*_
 
 I created a blackjack game within a Discord Bot. I chose to work on this porject since I had already created a game using pygame, and wanted to convert it over to a form that would work in a discord chat channel. My program starts with the buttons used to hit and stay, 
 when they are called, they set did_hit or did_stay to true, which is used later in the code to let the player hit and stay.
